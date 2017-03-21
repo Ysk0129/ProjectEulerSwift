@@ -15,14 +15,14 @@ extension ProjectEuler{
         // Substitute 2'. for 1.
         // (4). a^2 + b^2 = (sum - (a + b))^2
         // Since (2). and (3). conditions exist, (5). is established
-        // (4). 1 =< a < sum / 3, 2 =< b < sum / 2, sum / 3 + 1 =< c < sum - 3
+        // (5). 1 =< a < sum / 3, 2 =< b < sum / 2, sum / 3 + 1 =< c < sum - 3
         
         if(sum < 3){
             return nil
         }
         
         var pythagoreanDict = [Dictionary<String, Int>]()
-        //Todo: (5). Make a good implementation using conditions
+        //Todo: (4). Make a good implementation using conditions
         for a in 1..<sum / 3{
             for b in (a + 1)..<sum / 2{
                 let c = sum - (a + b)
