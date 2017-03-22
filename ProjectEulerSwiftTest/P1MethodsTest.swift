@@ -3,7 +3,7 @@ import XCTest
 
 class P1Test: XCTestCase {
     
-    func testsumMultiples(){
+    func testSumMultiples(){
         XCTAssertEqual(P1.sumMultiples(smallValue: 3, largeValue: 5, maxValue: 1000),233168)
         XCTAssertEqual(P1.sumMultiples(smallValue: 0, largeValue: 5, maxValue: 1000),0)
         XCTAssertEqual(P1.sumMultiples(smallValue: 3, largeValue: 0, maxValue: 1000),0)
