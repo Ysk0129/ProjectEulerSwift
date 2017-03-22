@@ -1,7 +1,7 @@
 
 extension ProjectEuler{
     static func sumMultiples(smallValue: Int, largeValue: Int, maxValue: Int) -> Int{
-        if(smallValue < 1 || smallValue > largeValue || largeValue > maxValue){
+        if(1 > smallValue || smallValue > largeValue || largeValue > maxValue){
             return 0
         }
         let sum = (smallValue..<maxValue)
