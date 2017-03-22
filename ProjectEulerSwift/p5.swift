@@ -1,18 +1,14 @@
 
 extension ProjectEuler{
     static func getDivisibleByAll(values: [Int]) -> Int{
-        guard let minValue = values.min() else{
+        guard var divisibleValue = values.first else{
             return 0
         }
-        guard let maxValue = values.max() else {
-            return 0
-        }
-        var divisibleValue = minValue
 
-        for element in minValue...maxValue {
+        for i in values {
             var n = 1
             while(true){
-                let commonMultiple = element * n
+                let commonMultiple = i * n
                 n += 1
                 if(commonMultiple % divisibleValue == 0){
                     divisibleValue = commonMultiple
