@@ -1,17 +1,18 @@
 
 extension ProjectEuler{
-    static func sumMultiples(arg1: Int, arg2: Int, maxValue: Int) -> Int{
-        let smallValue = arg1 < arg2 ? arg1 : arg2
-        let largeValue = arg1 > arg2 ? arg1 : arg2
+    static func sumMultiples(smallValue: Int, largeValue: Int, maxValue: Int) -> Int{
+        if(smallValue < 1 || smallValue > largeValue || largeValue > maxValue){
+            return 0
+        }
         let sum = (smallValue..<maxValue)
             .filter{ (x) -> Bool in x % smallValue == 0 || x % largeValue == 0 }
-            .reduce(0){ (num1, num2) -> Int in num1 + num2 }
+            .reduce(0){ $0 + $1 }
         return sum
     }
 }
 
 class P1: ProjectEuler{
     static func answer() -> Int {
-        return sumMultiples(arg1: 3, arg2: 5, maxValue: 1000)
+        return sumMultiples(smallValue: 3, largeValue: 5, maxValue: 1000)
     }
 }
