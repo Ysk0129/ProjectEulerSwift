@@ -1,13 +1,13 @@
 import Foundation
 extension ProjectEuler{
-    static func getSpecificPrimeNumber(nthPrimeNum: Int) -> Int{
-        if(nthPrimeNum < 1){
+    static func getPrimeNumberOf(nth: Int) -> Int{
+        if(nth < 1){
             return 0
         }
-        if(nthPrimeNum == 1){
+        if(nth == 1){
             return 2
         }
-        var remainingPrimeNum = nthPrimeNum - 1
+        var remainingPrimeNum = nth - 1
         var currentNum = 3
         var currentPrimeNum = 3
         
@@ -47,6 +47,6 @@ extension ProjectEuler{
 
 class P7: ProjectEuler{
     static func answer() -> Int {
-        return getSpecificPrimeNumber(nthPrimeNum: 10001)
+        return getPrimeNumberOf(nth: 10001)
     }
 }
