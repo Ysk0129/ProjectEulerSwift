@@ -22,9 +22,6 @@ extension ProjectEuler{
                 }
             }
         }
-        for i in 0...numArrays.count - 4{
-            prod.append(numArrays[i][arrXlength - i - 1] * numArrays[i + 1][arrXlength - i - 2] * numArrays[i + 2][arrXlength - i - 3] * numArrays[i + 3][arrXlength - i - 4])
-        }
         return prod.max()!
     }
 }
