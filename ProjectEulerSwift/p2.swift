@@ -1,6 +1,9 @@
 
 extension ProjectEuler{
     static func sumEvNumOfFibonacci(maxValue: Int) -> Int{
+        if(maxValue < 2){
+            return 0
+        }
         var x = 0
         var y = 1
         var z = 0
