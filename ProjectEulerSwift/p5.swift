@@ -4,7 +4,10 @@ extension ProjectEuler{
         guard var divisibleValue = values.first else{
             return 0
         }
-
+        if(values.isEmpty || !values.filter{$0 <= 0}.isEmpty){
+            return 0
+        }
+        
         for i in values {
             var n = 1
             while(true){

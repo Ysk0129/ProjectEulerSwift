@@ -1,11 +1,11 @@
 import Foundation
 extension ProjectEuler{
-    static func getMaxPalindromicNumber(digit: Int) -> Int{
-        if(digit < 2){
+    static func getMaxPalindromicNumber(prodDigit: Int) -> Int{
+        if(prodDigit < 2){
             return 0
         }
-        let maxValue = Int(pow(Double(10), Double(digit))) - 1
-        let minValue = Int(pow(Double(10), Double(digit - 1)))
+        let maxValue = Int(pow(Double(10), Double(prodDigit))) - 1
+        let minValue = Int(pow(Double(10), Double(prodDigit - 1)))
         var maxPalindromicNum = 0
         var endValue = 0
         
@@ -33,6 +33,6 @@ extension ProjectEuler{
 
 class P4: ProjectEuler{
     static func answer() -> Int {
-        return getMaxPalindromicNumber(digit: 3)
+        return getMaxPalindromicNumber(prodDigit: 3)
     }
 }
