@@ -1,11 +1,11 @@
 
 extension ProjectEuler{
-    static func getLongestCollatzSequenceStartNumber(maxValue: Int) -> Int{
+    static func getLongestCollatzStart(max: Int) -> Int{
         var maxLength = 0
         var maxStart = 0
         var start = 2
         
-        while(maxValue > start){
+        while(max > start){
             var n = start
             var count = 1
             while(n > 1){
@@ -29,6 +29,6 @@ extension ProjectEuler{
 
 class P14: ProjectEuler{
     static func answer() -> Int {
-        return getLongestCollatzSequenceStartNumber(maxValue: 1000000)
+        return getLongestCollatzStart(max: 1000000)
     }
 }
