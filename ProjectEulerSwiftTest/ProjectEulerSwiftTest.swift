@@ -26,5 +26,6 @@ class ProjectEulerSwiftTest: XCTestCase {
         XCTAssertEqual(P12.answer(), 76576500)
         XCTAssertEqual(P13.answer(), 5537376230)
         XCTAssertEqual(P14.answer(), 837799)
+        XCTAssertEqual(P16.answer(), 1366)
     }
 }
