@@ -1,4 +1,5 @@
 
 protocol ProjectEuler{
-    static func answer() -> Int
+    associatedtype T
+    static func answer() -> T
 }
