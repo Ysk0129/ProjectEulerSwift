@@ -25,10 +25,7 @@ extension ProjectEuler{
 
 class P5: ProjectEuler{
     static func answer() -> Int {
-        var values = [Int]()
-        for i in 1...20 {
-            values.append(i)
-        }
+        let values = (1...20).map{$0}
         return getDivisibleByAll(values: values)
     }
 }

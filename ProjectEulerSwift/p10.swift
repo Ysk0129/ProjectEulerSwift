@@ -1,11 +1,5 @@
 
 extension ProjectEuler{
-    static func getSumPrimeNumbers(maxValue: Int) -> Int{
-        if let sumPrimeNum = getPrimeNumbers(maxValue: maxValue) {
-            return sumPrimeNum.reduce(0){$0 + $1}
-        }
-        return 0
-    }
     
     static func getPrimeNumbers(maxValue: Int) -> [Int]?{
         if(maxValue <= 1){
@@ -30,6 +24,9 @@ extension ProjectEuler{
 
 class P10: ProjectEuler{
     static func answer() -> Int {
-        return getSumPrimeNumbers(maxValue: 2000000)
+        guard let primeNumbers = getPrimeNumbers(maxValue: 2000000) else{
+            return 0
+        }
+        return primeNumbers.reduce(0){$0 + $1}
     }
 }
