@@ -29,7 +29,6 @@ class P18: ProjectEuler{
         var arrInt = NumericString.getArrayWith(stringArr: num.components(separatedBy: " "), conversion: TypeConversionClosures.int)
         var arr = [[Int]]()
         var i = 0
-        print(arrInt)
         while(i <= arrInt.count - 1){
             arr.append(arrInt[0...i].map{$0})
             i += 1
