@@ -32,5 +32,6 @@ class ProjectEulerSwiftTest: XCTestCase {
         XCTAssertEqual(P19.answer(), 171)
         XCTAssertEqual(P20.answer(), 648)
         XCTAssertEqual(P21.answer(), 31626)
+        XCTAssertEqual(P22.answer(sorted: P22.answer()), 871198282)
     }
 }
