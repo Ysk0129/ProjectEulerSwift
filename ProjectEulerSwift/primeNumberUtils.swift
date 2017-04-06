@@ -71,4 +71,24 @@ extension ProjectEuler{
         }
         return factors
     }
+    
+    static func getPrimeNumbers(maxValue: Int) -> [Int]?{
+        if(maxValue <= 1){
+            return nil
+        }
+        if(maxValue == 2){
+            return [2]
+        }
+        
+        var primeNumArr = [2]
+        var currentNum = 3
+        
+        while(currentNum <= maxValue){
+            if(isPrimeNumber(value: currentNum)){
+                primeNumArr.append(currentNum)
+            }
+            currentNum += 2
+        }
+        return primeNumArr
+    }
 }
