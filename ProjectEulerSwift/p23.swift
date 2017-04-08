@@ -5,24 +5,28 @@ extension ProjectEuler{
         let abundantNumbers = (12...max).filter{(x) -> Bool in
                 return getAllDivisors(n: x).filter{$0 != x}.reduce(0){$0 + $1} > x
             }
-        return NSOrderedSet(array: abundantNumbers).array as! [Int]
+        return abundantNumbers
     }
     
     static func getNotSumOfAbundantNumbers() ->[Int]{
-        var notSumOfAbundantNumbers = [Int]()
-        let abundantNumbers = getAbundantNumbers(max: 28123)
         
-        for_i: for i in 25...28123{
+        let abundantNumbers = getAbundantNumbers(max: 28123)
+        var sumOfAbundantNumbers = [Int]()
+        for_i: for i in abundantNumbers{
             for_j: for j in abundantNumbers{
-                if(i < j){
+                if(i < j || i + j > 28123){
                     continue for_i
                 }
-                if(abundantNumbers.index(of: i - j) == nil){
-                    if(notSumOfAbundantNumbers.index(of: j) == nil){
-                        notSumOfAbundantNumbers.append(j)
-                    }
-                    continue for_i
+                if(sumOfAbundantNumbers.index(of: i + j) == nil){
+                    sumOfAbundantNumbers.append(i + j)
                 }
+            }
+        }
+        
+        var notSumOfAbundantNumbers = [Int]()
+        for i in 1...28123{
+            if(sumOfAbundantNumbers.index(of: i) == nil){
+                notSumOfAbundantNumbers.append(i)
             }
         }
         return notSumOfAbundantNumbers
