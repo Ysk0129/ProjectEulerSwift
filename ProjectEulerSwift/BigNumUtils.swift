@@ -53,7 +53,50 @@ extension ProjectEuler{
         return arr.map{String($0)}.reversed().joined()
     }
     
-    static func bigNumAddition(n: String, m: String) -> String{
+    static func bigMulti(n: String, m: String) ->String{
+        let nArr = Array(n.characters.map{Int(String($0))!}.reversed())
+        let mArr = Array(m.characters.map{Int(String($0))!}.reversed())
+        
+        var nums = [[Int]]()
+        var digit = 0
+        for i in nArr{
+            var climbingUp = 0
+            var tmpArr = mArr.map{ (x) -> Int in
+                var num = 0
+                num = x * i + climbingUp
+                climbingUp = 0
+                if(String(num).characters.count > 1){
+                    climbingUp = Int(String(num).substring(to: String(num).index(String(num).endIndex, offsetBy: -1)))!
+                    num = Int(String(num).substring(from: String(num).index(String(num).endIndex, offsetBy: -1)))!
+                }
+                return num
+            }
+            
+            if(climbingUp > 0){
+                tmpArr.append(climbingUp)
+                climbingUp = 0
+            }
+            
+            var carry = digit
+            while(carry > 0){
+                tmpArr.insert(0, at: 0)
+                carry -= 1
+            }
+            
+            nums.append(tmpArr)
+            digit += 1
+        }
+        
+        let numsStrs = nums.map{$0.map{String($0)}.reversed().joined()}
+        var bigProd = "0"
+        for num in numsStrs{
+            bigProd = bigAddition(n: bigProd, m: num)
+        }
+        
+        return bigProd
+    }
+
+    static func bigAddition(n: String, m: String) -> String{
         var larger = [Int]()
         var smaller = [Int]()
         

@@ -11,7 +11,7 @@ extension ProjectEuler{
         var digitsCount = 0
         var count = 1
         while(digitsCount < nDigit){
-            z = bigNumAddition(n: x, m: y)
+            z = bigAddition(n: x, m: y)
             x = y
             y = z
             digitsCount = z.characters.count
