@@ -1,12 +1,6 @@
 import Foundation
 extension ProjectEuler{
-    static func getProdPythagoreanABCWithSum(sum: Int) -> [Int]{
-        if let prodPythagorean = getPythagoreanABCWithSum(sum: sum){
-            return prodPythagorean.map{$0.values.reduce(1){$0 * $1}}
-        }
-        return [0]
-    }
-    
+
     static func getPythagoreanABCWithSum(sum: Int) -> [Dictionary<String, Int>]?{
         // (1). a^2 + b^2 = c^2
         // (2). a + b + c = sum
@@ -40,6 +34,10 @@ extension ProjectEuler{
 
 class P9: ProjectEuler{
     static func answer() -> Int {
-        return getProdPythagoreanABCWithSum(sum: 1000)[0]
+        
+        guard let prodPythagorean = getPythagoreanABCWithSum(sum: 1000) else{
+            return 0
+        }
+        return prodPythagorean.map{$0.values.reduce(1){$0 * $1}}[0]
     }
 }
