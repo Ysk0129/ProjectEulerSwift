@@ -3,7 +3,7 @@ import XCTest
 
 class P9Test: XCTestCase {
     
-    func testSumMultiples(){
+    func testGetPythagoreanABCWithSum(){
         let pythagoreanABC1 = P9.getPythagoreanABCWithSum(sum: 12)
         XCTAssertEqual(pythagoreanABC1?[0]["a"], 3)
         XCTAssertEqual(pythagoreanABC1?[0]["b"], 4)
