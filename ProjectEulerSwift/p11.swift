@@ -1,6 +1,16 @@
 
 extension ProjectEuler{
     static func prodConsecutive(numArrays: [[Int]]) -> Int {
+        if(numArrays.count < 4){
+            return 0
+        }
+        
+        for i in numArrays{
+            if(i.count < 4){
+                return 0
+            }
+        }
+        
         var prod = [Int]()
         let arrXlength = numArrays.count
         let arrYlength = numArrays[0].count
