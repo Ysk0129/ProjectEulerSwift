@@ -1,3 +1,5 @@
+// Todo: Support when the answer is negative
+// Todo: Use a better algorithm
 import Foundation
 extension ProjectEuler{
     
@@ -146,14 +148,16 @@ extension ProjectEuler{
         var minArr = minuend.characters.reversed().map{Int(String($0))}
         var subArr = subtrahend.characters.reversed().map{Int(String($0))}
         
-        // Todo: Support when the answer is negative
         if(minArr.count < subArr.count){
-            return "0"
+            return "negative"
         }
         if(minArr.count == subArr.count){
             for i in 0...minArr.count - 1{
+                if(minArr.reversed()[i]! > subArr.reversed()[i]!){
+                    break
+                }
                 if(minArr.reversed()[i]! < subArr.reversed()[i]!){
-                    return "0"
+                    return "negative"
                 }
             }
         }
@@ -194,5 +198,27 @@ extension ProjectEuler{
         }
         
         return diff.reversed().map{String($0)}.joined()
+    }
+    
+    static func bigDiv(dividend: String, divisor: String) -> String{
+        
+        if(dividend == "0" || divisor == "0"){
+            return "0"
+        }
+ 
+        var quot = "1"
+        var multi = "0"
+        var diff = "1"
+        
+        while(diff != "0" && diff != "negative"){
+            multi = bigMulti(n: divisor, m: quot)
+            diff = bigSub(minuend: dividend, subtrahend: multi)
+            quot = bigAddition(n: quot, m: "1")
+        }
+        
+        if(diff == "negative"){
+            quot = bigSub(minuend: quot, subtrahend: "1")
+        }
+        return bigSub(minuend: quot, subtrahend: "1")
     }
 }
