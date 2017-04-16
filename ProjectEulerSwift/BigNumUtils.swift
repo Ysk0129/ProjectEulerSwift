@@ -136,4 +136,63 @@ extension ProjectEuler{
         
         return result.map{String($0)}.reversed().joined()
     }
+    
+    static func bigSub(minuend: String, subtrahend: String) -> String{
+        
+        if(minuend == subtrahend){
+            return "0"
+        }
+        
+        var minArr = minuend.characters.reversed().map{Int(String($0))}
+        var subArr = subtrahend.characters.reversed().map{Int(String($0))}
+        
+        // Todo: Support when the answer is negative
+        if(minArr.count < subArr.count){
+            return "0"
+        }
+        if(minArr.count == subArr.count){
+            for i in 0...minArr.count - 1{
+                if(minArr.reversed()[i]! < subArr.reversed()[i]!){
+                    return "0"
+                }
+            }
+        }
+        
+        var diff = [Int]()
+        var borrow = 0
+        for i in 0...subArr.count - 1{
+            if(minArr[i]! - borrow < subArr[i]!){
+                diff.append(minArr[i]! + 10 - subArr[i]! - borrow)
+                borrow = 1
+            }else{
+                diff.append(minArr[i]! - subArr[i]! - borrow)
+                borrow = 0
+            }
+        }
+        
+        var index = subArr.count
+        while(borrow != 0){
+            if(minArr[index]! < borrow){
+                diff.append(minArr[index]! + 10 - borrow)
+                index += 1
+            }else{
+                diff.append(minArr[index]! - borrow)
+                borrow = 0
+                index += 1
+            }
+        }
+        
+        if(index < minArr.count){
+            for i in index...minArr.count - 1{
+                diff.append(minArr[i]!)
+            }
+        }
+        
+        // Trim leading 0
+        while(diff.last! == 0){
+            diff.removeLast()
+        }
+        
+        return diff.reversed().map{String($0)}.joined()
+    }
 }
