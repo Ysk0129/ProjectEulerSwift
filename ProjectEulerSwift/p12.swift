@@ -2,7 +2,7 @@
 extension ProjectEuler{
     
     static func getTriangularNumber(nth: Int) -> Int{
-        return (1 + nth) * nth / 2
+        return nth > 0 ? (1 + nth) * nth / 2 : 0
     }
     
     static func getTriangularWith(divCount: Int) -> Int{
