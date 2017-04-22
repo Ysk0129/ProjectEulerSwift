@@ -40,6 +40,32 @@ class P24: ProjectEuler{
                 }
             }
         }
+        
+        let valueOfPermutation = {(nth: Int, arr: [String]) -> String in
+            var answer = [String]()
+            var currentNum = ""
+            var count = 0
+            var n = ""
+            func permutation(arr: [String]) -> String{
+                
+                if(arr.count == 1){
+                    count += 1
+                    if(count == nth){
+                        print("OKOK")
+                        n = currentNum + arr.last!
+                        return currentNum + arr.last!
+                    }
+                    currentNum = ""
+                }
+                for i in arr{
+                    currentNum += i
+                    permutation(arr: arr.filter{$0 != i})
+                }
+                return n
+            }
+            return permutation(arr: arr)
+        }
+        //print(valueOfPermutation(1000000, nums))
         return num
     }
 }
