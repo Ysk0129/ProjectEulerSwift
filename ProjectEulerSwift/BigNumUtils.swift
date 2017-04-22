@@ -221,7 +221,6 @@ extension ProjectEuler{
         for i in 0...digitDiff{
             
             let div = digitDiv / Int(String(divisor.characters.first!))!
-            let rem = digitDiv % Int(String(divisor.characters.first!))!
 
             if(div == 0){
                 quot.append(0)
@@ -230,10 +229,11 @@ extension ProjectEuler{
             }
             
             let prodDigit = digitDiff - i > 0 ? bigPow(base: 10, exponent: digitDiff - i) : "1"
-            let n = bigMulti(n: prodDigit, m: String(div))
+            var n = bigMulti(n: prodDigit, m: String(div))
             var prod = bigMulti(n: n, m: divisor)
-            
+
             if(bigSub(minuend: currentDividend, subtrahend: prod) != "negative"){
+                
                 quot.append(div)
                 currentDividend = bigSub(minuend: currentDividend, subtrahend: prod)
                 if(bigSub(minuend: currentDividend, subtrahend: divisor) == "negative"){
@@ -244,21 +244,31 @@ extension ProjectEuler{
                     }
                     break
                 }
-                if(rem != 0){
+                
+                if((String(currentDividend)?.characters.count)!  >= dividend.characters.count - i){
                     digitDiv = Int(String(currentDividend).substring(to: currentDividend.index(currentDividend.startIndex, offsetBy: 2)))!
                 }else{
                     digitDiv = Int(String(currentDividend.characters.first!))!
                 }
                 continue
             }
-            if(div - 1 == 0){
+            
+            if(div == 1){
                 quot.append(0)
                 digitDiv = Int(String(currentDividend).substring(to: currentDividend.index(currentDividend.startIndex, offsetBy: 2)))!
                 continue
             }
-            quot.append(div - 1)
-            prod = bigMulti(n: String(div - 1), m: divisor)
-            currentDividend = bigSub(minuend: currentDividend, subtrahend: prod)
+            
+            for_j: for j in 1...div{
+                n = bigMulti(n: prodDigit, m: String(div - j))
+                prod = bigMulti(n: n, m: divisor)
+                if(bigSub(minuend: currentDividend, subtrahend: prod) != "negative"){
+                    quot.append(div - j)
+                    currentDividend = bigSub(minuend: currentDividend, subtrahend: prod)
+                    break for_j
+                }
+            }
+            
             if(bigSub(minuend: currentDividend, subtrahend: divisor) == "negative"){
                 var loop = digitDiff - i
                 while(loop > 0){
@@ -267,12 +277,19 @@ extension ProjectEuler{
                 }
                 break
             }
-            if(rem != 0){
+            
+            if((String(currentDividend)?.characters.count)! >= dividend.characters.count - i){
                 digitDiv = Int(String(currentDividend).substring(to: currentDividend.index(currentDividend.startIndex, offsetBy: 2)))!
             }else{
                 digitDiv = Int(String(currentDividend.characters.first!))!
             }
         }
+        
+        // Trim leading 0
+        while(quot.first! == 0){
+            quot.removeFirst()
+        }
+        
         return quot.map{String($0)}.joined()
     }
 }
