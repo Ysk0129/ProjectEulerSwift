@@ -3,15 +3,15 @@
 import Foundation
 extension ProjectEuler{
     
-    static func bigPow(n: Int, m: Int) ->String{
+    static func bigPow(base: Int, exponent: Int) ->String{
         var climbingUp = 0
         var i = 2
-        var arr = [n]
+        var arr = [base]
         
-        while(i <= m){
+        while(i <= exponent){
             let tmpArr = arr.map{ (x) -> Int in
                 var num = 0
-                num = x * n + climbingUp
+                num = x * base + climbingUp
                 climbingUp = 0
                 if(String(num).characters.count > 1){
                     climbingUp = Int(String(num).substring(to: String(num).index(String(num).endIndex, offsetBy: -1)))!
@@ -92,13 +92,13 @@ extension ProjectEuler{
         let numsStrs = nums.map{$0.map{String($0)}.reversed().joined()}
         var bigProd = "0"
         for num in numsStrs{
-            bigProd = bigAddition(n: bigProd, m: num)
+            bigProd = bigAdd(n: bigProd, m: num)
         }
         
         return bigProd
     }
 
-    static func bigAddition(n: String, m: String) -> String{
+    static func bigAdd(n: String, m: String) -> String{
         var larger = [Int]()
         var smaller = [Int]()
         
@@ -205,20 +205,74 @@ extension ProjectEuler{
         if(dividend == "0" || divisor == "0"){
             return "0"
         }
- 
-        var quot = "1"
-        var multi = "0"
-        var diff = "1"
         
-        while(diff != "0" && diff != "negative"){
-            multi = bigMulti(n: divisor, m: quot)
-            diff = bigSub(minuend: dividend, subtrahend: multi)
-            quot = bigAddition(n: quot, m: "1")
-        }
+        let dividendArr = dividend.characters.map{Int(String($0))}
+        let divisorArr = divisor.characters.map{Int(String($0))}
         
-        if(diff == "negative"){
-            quot = bigSub(minuend: quot, subtrahend: "1")
+        let digitDiff = dividendArr.count - divisorArr.count
+        var quot = [Int]()
+
+        var currentDividend = dividend
+        var digitDiv = Int(String(currentDividend.characters.first!))!
+        
+        if(digitDiff < 0){
+            return "0"
         }
-        return bigSub(minuend: quot, subtrahend: "1")
+        for i in 0...digitDiff{
+            
+            let div = digitDiv / Int(String(divisor.characters.first!))!
+            let rem = digitDiv % Int(String(divisor.characters.first!))!
+
+            if(div == 0){
+                quot.append(0)
+                digitDiv = Int(String(currentDividend).substring(to: currentDividend.index(currentDividend.startIndex, offsetBy: 2)))!
+                continue
+            }
+            
+            let prodDigit = digitDiff - i > 0 ? bigPow(base: 10, exponent: digitDiff - i) : "1"
+            let n = bigMulti(n: prodDigit, m: String(div))
+            var prod = bigMulti(n: n, m: divisor)
+            
+            if(bigSub(minuend: currentDividend, subtrahend: prod) != "negative"){
+                quot.append(div)
+                currentDividend = bigSub(minuend: currentDividend, subtrahend: prod)
+                if(bigSub(minuend: currentDividend, subtrahend: divisor) == "negative"){
+                    var loop = digitDiff - i
+                    while(loop > 0){
+                        quot.append(0)
+                        loop -= 1
+                    }
+                    break
+                }
+                if(rem != 0){
+                    digitDiv = Int(String(currentDividend).substring(to: currentDividend.index(currentDividend.startIndex, offsetBy: 2)))!
+                }else{
+                    digitDiv = Int(String(currentDividend.characters.first!))!
+                }
+                continue
+            }
+            if(div - 1 == 0){
+                quot.append(0)
+                digitDiv = Int(String(currentDividend).substring(to: currentDividend.index(currentDividend.startIndex, offsetBy: 2)))!
+                continue
+            }
+            quot.append(div - 1)
+            prod = bigMulti(n: String(div - 1), m: divisor)
+            currentDividend = bigSub(minuend: currentDividend, subtrahend: prod)
+            if(bigSub(minuend: currentDividend, subtrahend: divisor) == "negative"){
+                var loop = digitDiff - i
+                while(loop > 0){
+                    quot.append(0)
+                    loop -= 1
+                }
+                break
+            }
+            if(rem != 0){
+                digitDiv = Int(String(currentDividend).substring(to: currentDividend.index(currentDividend.startIndex, offsetBy: 2)))!
+            }else{
+                digitDiv = Int(String(currentDividend.characters.first!))!
+            }
+        }
+        return quot.map{String($0)}.joined()
     }
 }
