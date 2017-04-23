@@ -1,9 +1,11 @@
 
 extension ProjectEuler{
-    static func nCr(n: Int, r: Int) -> Int{
-        if(n < r){
-            return 0
+    static func nCr(n: Int, r: Int) -> String{
+        if(n < r || n < 0 || r < 0){
+            return "0"
         }
-        return n.factorial() / (r.factorial() * (n - r).factorial())
+        let combination = bigDiv(dividend: bigFactorial(n: n), divisor: bigMulti(n: bigFactorial(n: r),m: bigFactorial(n: n - r)))
+        
+        return combination
     }
 }
