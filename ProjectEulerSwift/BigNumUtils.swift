@@ -8,6 +8,12 @@ extension ProjectEuler{
         var i = 2
         var arr = [base]
         
+        if(base == 0){
+            return "0"
+        }
+        if(exponent == 0){
+            return "1"
+        }
         while(i <= exponent){
             let tmpArr = arr.map{ (x) -> Int in
                 var num = 0
