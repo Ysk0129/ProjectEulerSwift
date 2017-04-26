@@ -4,7 +4,9 @@ extension ProjectEuler{
         return n > m ? n : m
     }
     
-    static func dynamicProgramming(nums: [[Int]]) -> Int{
+    static func sumOfMaximumPaths(withPyramid nums: [[Int]]) -> Int{
+        
+        //This algorithm uses dynamic programming
         let length = nums.last!.count
         var lowerArr = nums.last!
         
@@ -34,6 +36,6 @@ class P18: ProjectEuler{
             i += 1
             arrInt = arrInt.dropFirst(i).map{$0}
         }
-        return dynamicProgramming(nums: arr)
+        return sumOfMaximumPaths(withPyramid: arr)
     }
 }
