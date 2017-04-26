@@ -6,6 +6,15 @@ extension ProjectEuler{
     
     static func sumOfMaximumPaths(withPyramid nums: [[Int]]) -> Int{
         
+        if(nums.count <= 0){
+            return 0
+        }
+        if(nums.count == 1){
+            guard let max = nums[0].max() else{
+                return 0
+            }
+            return max
+        }
         //This algorithm uses dynamic programming
         let length = nums.last!.count
         var lowerArr = nums.last!
