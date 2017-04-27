@@ -9,14 +9,14 @@ class P18Test: XCTestCase {
         XCTAssertEqual(P18.max(n: -10, m: 100), 100)
     }
     
-    func testDynamicProgramming(){
+    func testSumOfMaximumPath(){
         
         let triangleArr1 = [[3],
                            [7, 4],
                            [2, 4, 6],
                            [8, 5, 9, 3]]
-        XCTAssertEqual(P18.sumOfMaximumPaths(withPyramid: triangleArr1), 23)
-        XCTAssertEqual(P18.sumOfMaximumPaths(withPyramid: [[2, 4, 1]]), 4)
-        XCTAssertEqual(P18.sumOfMaximumPaths(withPyramid: [[]]), 0)
+        XCTAssertEqual(P18.sumOfMaximumPath(withPyramid: triangleArr1), 23)
+        XCTAssertEqual(P18.sumOfMaximumPath(withPyramid: [[2, 4, 1]]), 4)
+        XCTAssertEqual(P18.sumOfMaximumPath(withPyramid: [[]]), 0)
     }
 }

@@ -4,7 +4,7 @@ extension ProjectEuler{
         return n > m ? n : m
     }
     
-    static func sumOfMaximumPaths(withPyramid nums: [[Int]]) -> Int{
+    static func sumOfMaximumPath(withPyramid nums: [[Int]]) -> Int{
         
         if(nums.count <= 0){
             return 0
@@ -45,6 +45,6 @@ class P18: ProjectEuler{
             i += 1
             arrInt = arrInt.dropFirst(i).map{$0}
         }
-        return sumOfMaximumPaths(withPyramid: arr)
+        return sumOfMaximumPath(withPyramid: arr)
     }
 }
