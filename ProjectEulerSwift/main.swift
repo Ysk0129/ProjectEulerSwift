@@ -1,4 +1,4 @@
-print(P15.nCr(n: 2000, r: 200))
+
 print(P1.answer())
 print(P2.answer())
 print(P3.answer())
@@ -24,3 +24,4 @@ print(P22.answer(sorted: P22.answer()))
 print(P23.answer())
 print(P24.answer())
 print(P25.answer())
+print(P26.answer())
