@@ -36,6 +36,14 @@ extension ProjectEuler{
     }
 
     static func bigFactorial(n: Int) ->String{
+        
+        if(n < 0){
+            return "0"
+        }
+        if(n == 0){
+            return "1"
+        }
+        
         var climbingUp: Int = 0
         var i: Int = n - 1
         var arr: [Int] = String(n).characters.map{Int(String($0))!}.reversed()
